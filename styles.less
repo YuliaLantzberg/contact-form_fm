@@ -138,18 +138,23 @@ h6 {
 
 // GENERAL STYLES
 body {
+	display: grid;
+	place-content: center;
 	padding: @sp-400 @sp-200;
 	background-color: @green-200;
 	font-family: @ff-regular;
+	height: 100vh;
 
 	main {
 		position: relative;
+		display: grid;
+		place-content: center;
 	}
 
 	form {
 		border-radius: @sp-200;
 		background-color: @white;
-		padding: @sp-300;
+		padding: clamp(@sp-300, 5.2vw, @sp-500);
 
 		fieldset {
 			border: none;
@@ -171,6 +176,7 @@ body {
 
 .form {
 	display: grid;
+	place-content: center;
 	gap: @sp-300;
 
 	&__title {
@@ -182,6 +188,14 @@ body {
 	&__contact-info {
 		display: grid;
 		gap: @sp-300;
+
+		@media (min-width: 40rem) {
+			grid-template-columns: 1fr 1fr;
+			#label-email {
+				grid-column-start: 1;
+				grid-column-end: 3;
+			}
+		}
 
 		label {
 			.body-sm();
@@ -200,6 +214,9 @@ body {
 	&__queries {
 		display: grid;
 		gap: @sp-200;
+		@media (min-width: 40rem) {
+			grid-template-columns: 1fr 1fr;
+		}
 		.queries__type {
 			border: 1px solid @grey-500;
 			border-radius: @sp-100;
@@ -234,7 +251,7 @@ body {
 
 // TOAST MSG STYLES
 .toast {
-	visibility: hidden;
+	// visibility: hidden;
 	position: absolute;
 	top: 0;
 	background-color: @grey-900;
@@ -242,6 +259,15 @@ body {
 	border-radius: @sp-150;
 	padding: @sp-300;
 	margin: -@sp-100 @sp-150;
+	max-width: 28.125rem;
+
+	@media (min-width: 40rem) {
+		top: -5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		margin: 0;
+		width: 100%;
+	}
 
 	h1 {
 		.flex(center, flex-start, row);
