@@ -11,53 +11,110 @@
 			sizes="32x32"
 			href="./assets/images/favicon-32x32.png"
 		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet/less" type="text/css" href="styles.less" />
+		<script src="https://cdn.jsdelivr.net/npm/less"></script>
 
 		<title>Frontend Mentor | Contact form</title>
 	</head>
 	<body>
 		<main>
-			<form>
+			<form class="form">
 				<h1 class="form__title">Contact Us</h1>
-				<fieldset class="form__personal-data">
-					<input type="text" placeholder="First Name" id="first_name" />
-					<label for="first_name">First Name</label>
-					<p class="form__error-msg">This field is required</p>
-					<input type="text" placeholder="Last Name" id="last_name" />
-					<label for="last_name">Last Name</label>
-					<p class="form__error-msg">This field is required</p>
-					<input type="email" placeholder="Email" id="email" />
-					<label for="email">Email Address</label>
-					<p class="form__error-msg">
-						This field is required/Please enter a valid email address
-					</p>
+				<fieldset class="form__contact-info">
+					<label for="first_name"
+						>First Name <span aria-label="required">*</span>
+						<input
+							type="text"
+							placeholder="First Name"
+							id="first_name"
+							autocomplete="name"
+							required
+						/>
+						<span class="form__error-msg" aria-labelledby="first_name">
+							This field is required
+						</span>
+					</label>
+
+					<label for="last_name"
+						>Last Name <span aria-label="required">*</span>
+						<input
+							type="text"
+							placeholder="Last Name"
+							id="last_name"
+							autocomplete="family-name"
+							required
+						/>
+						<span class="form__error-msg" aria-labelledby="last_name">
+							This field is required
+						</span>
+					</label>
+
+					<label for="email"
+						>Email Address <span aria-label="required">*</span>
+						<input
+							type="email"
+							placeholder="Email"
+							id="email"
+							autocomplete="email"
+						/>
+						<span class="form__error-msg" aria-labelledby="email">
+							This field is required/Please enter a valid email address
+						</span>
+					</label>
 				</fieldset>
-				<fieldset>
-					<legend>Query Type</legend>
-					<div class="radio-btn">
-						<input type="radio" id="general" />
+				<fieldset class="form__queries">
+					<legend>Query Type <span aria-label="required">*</span></legend>
+					<div role="group" class="queries__type">
+						<input type="radio" name="query-type" id="general" checked />
 						<label for="general">General Enquiry</label>
-						<input type="radio" id="support" />
-						<label for="support">Support Request</label>
-						<p class="form__error-msg">Please select a query type</p>
 					</div>
+					<div role="group" class="queries__type">
+						<input type="radio" name="query-type" id="support" />
+						<label for="support">Support Request</label>
+					</div>
+					<p class="form__error-msg">Please select a query type</p>
 				</fieldset>
-				<fieldset>
-					<input type="textfield" id="msg" />
-					<label for="msg">Message</label>
-					<p class="form__error-msg">This field is required</p>
+				<fieldset class="form__message">
+					<label for="msg"
+						>Message <span aria-label="required">*</span>
+						<textarea id="msg" name="message" rows="10"></textarea>
+						<span class="form__error-msg">This field is required</span>
+					</label>
 				</fieldset>
 
-				<fieldset>
-					<input type="checkbox" id="concent" />
-					<label for="concent">I consent to being contacted by the team</label>
+				<fieldset class="form__checkbox">
+					<input type="checkbox" id="concent" required />
+					<label for="concent"
+						>I consent to being contacted by the team <span>*</span></label
+					>
 					<p class="form__error-msg">
 						To submit this form, please consent to being contacted
 					</p>
 				</fieldset>
-				<button type="submit">Submit</button>
+				<button class="btn" type="submit">Submit</button>
 			</form>
 			<div class="toast">
-				<h1>Submit Message Sent!</h1>
+				<h1>
+					<span
+						><svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="20"
+							height="21"
+							fill="none"
+							viewBox="0 0 20 21"
+						>
+							<path
+								fill="#fff"
+								d="M14.28 7.72a.748.748 0 0 1 0 1.06l-5.25 5.25a.748.748 0 0 1-1.06 0l-2.25-2.25a.75.75 0 1 1 1.06-1.06l1.72 1.72 4.72-4.72a.75.75 0 0 1 1.06 0Zm5.47 2.78A9.75 9.75 0 1 1 10 .75a9.76 9.76 0 0 1 9.75 9.75Zm-1.5 0A8.25 8.25 0 1 0 10 18.75a8.26 8.26 0 0 0 8.25-8.25Z"
+							/></svg></span
+					>Message Sent!
+				</h1>
 				<p>Thanks for completing the form. We'll be in touch soon!</p>
 			</div>
 		</main>

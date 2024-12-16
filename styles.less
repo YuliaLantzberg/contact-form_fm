@@ -1,0 +1,256 @@
+// CSS RESET
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+	margin: 0;
+}
+
+body {
+	/* 3. Add accessible line-height */
+	line-height: 1.5;
+	/* 4. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+	isolation: isolate;
+}
+
+//   VARIABLES
+// ## Colors
+
+@green-200: hsl(148, 38%, 91%);
+@green-600: hsl(169, 82%, 27%);
+@red: hsl(0, 66%, 54%);
+
+@white: hsl(0, 0%, 100%);
+@grey-500: hsl(186, 15%, 59%);
+@grey-900: hsl(187, 24%, 22%);
+
+// ## Typography
+
+@fs-labels: 1rem;
+
+@ff-regular: "Karla", sans-serif;
+
+@fw-regular: 400;
+@fw-bold: 700;
+
+//  ## Spacing
+
+@sp-1600: 8rem;
+@sp-500: 2.5rem;
+@sp-400: 2rem;
+@sp-300: 1.5rem;
+@sp-200: 1rem;
+@sp-150: 0.75rem;
+@sp-100: 0.5rem;
+
+// MIXINS
+.flex(@align, @justify, @direction) {
+	display: flex;
+	justify-content: @justify;
+	align-items: @align;
+	flex-direction: @direction;
+}
+
+.heading-bold {
+	font-size: @sp-400;
+	font-weight: @fw-bold;
+	line-height: 1;
+	letter-spacing: -1px;
+}
+
+.body-md {
+	font-size: 1.175rem;
+	line-height: 1.5;
+	letter-spacing: 0;
+}
+
+.body-md-bold {
+	.body-md();
+	font-weight: @fw-bold;
+}
+
+.body-md-regular {
+	.body-md();
+	font-weight: @fw-regular;
+}
+
+.body-sm {
+	font-size: @fs-labels;
+	line-height: 1.5;
+	letter-spacing: 0;
+	font-weight: @fw-regular;
+}
+
+// GENERAL STYLES
+body {
+	padding: @sp-400 @sp-200;
+	background-color: @green-200;
+	font-family: @ff-regular;
+
+	main {
+		position: relative;
+	}
+
+	form {
+		border-radius: @sp-200;
+		background-color: @white;
+		padding: @sp-300;
+
+		fieldset {
+			border: none;
+		}
+	}
+}
+
+.btn {
+	padding: @sp-200 @sp-500;
+	border-radius: 0.5rem;
+	background-color: @green-600;
+	text-transform: capitalize;
+	color: @white;
+	.body-md-bold();
+	border: none;
+}
+
+// FORM STYLES
+
+.form {
+	display: grid;
+	gap: @sp-300;
+
+	&__title {
+		.heading-bold();
+		color: @grey-900;
+		margin-bottom: @sp-100;
+	}
+
+	&__contact-info {
+		display: grid;
+		gap: @sp-300;
+
+		label {
+			.body-sm();
+			input {
+				padding: @sp-150 @sp-300;
+				width: 100%;
+				border: 1px solid @grey-500;
+				border-radius: @sp-100;
+				&::placeholder {
+					.body-md-regular();
+				}
+			}
+		}
+	}
+
+	&__queries {
+		display: grid;
+		gap: @sp-200;
+		.queries__type {
+			border: 1px solid @grey-500;
+			border-radius: @sp-100;
+			padding: @sp-150 @sp-300;
+			.flex(center, flex-start, row);
+			gap: @sp-150;
+			.body-md-regular();
+			input {
+				border: 1px solid @grey-500;
+				width: 1.5rem;
+				height: 1.5rem;
+			}
+		}
+	}
+
+	&__message {
+		textarea {
+			width: 100%;
+		}
+	}
+
+	&__checkbox {
+		.flex(center, flex-start, row);
+		gap: @sp-200;
+		.body-sm();
+	}
+
+	&__error-msg {
+		display: none;
+	}
+}
+
+// TOAST MSG STYLES
+.toast {
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	background-color: @grey-900;
+	color: @green-200;
+	border-radius: @sp-150;
+	padding: @sp-300;
+	margin: -@sp-100 @sp-150;
+
+	h1 {
+		.flex(center, flex-start, row);
+		gap: @sp-200;
+		.body-md-bold();
+		color: @white;
+		margin-bottom: @sp-150;
+	}
+	p {
+		.body-sm();
+	}
+}
