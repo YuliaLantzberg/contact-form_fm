@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Add solution URL here](https://github.com/YuliaLantzberg/contact-form_fm)
-- Live Site URL: [Add live site URL here](https://yulialantzberg.github.io/interactive-rating-component_fm/)
+- Live Site URL: [Add live site URL here](https://yulialantzberg.github.io/contact-form_fm/)
 
 ## My process
 
