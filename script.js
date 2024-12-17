@@ -15,18 +15,17 @@ const errors = {
 	QUERY: "Please select a query type",
 	CONSENT: "To submit this form, please consent to being contacted",
 };
+const ENTER = "Enter";
 
 function displayError(inputEl, error) {
 	error_messages.forEach((er) => {
-		console.log("er", er);
-		console.log("inputEl", inputEl);
-		console.log("aria", er.getAttribute("aria-labelledby"));
 		if (er.getAttribute("aria-labelledby") === inputEl.id) {
 			er.textContent = error;
 			er.style.visibility = "visible";
 		}
 	});
 	inputEl.classList.add("error");
+	inputEl.focus();
 }
 
 function isEmailValid(emailStr) {
@@ -47,7 +46,6 @@ function isQueriesType() {
 function resetErrors() {
 	error_messages.forEach((err_msg) => {
 		err_msg.style.visibility = "hidden";
-		console.log("error_messages hidden: ", err_msg);
 	});
 	const errorEl = document.querySelector(".error");
 	if (errorEl) errorEl.classList.remove("error");
@@ -78,11 +76,9 @@ function submitHandler(e) {
 		inputEl = email;
 		error = errors.EMAIL;
 	} else if (!isQueriesType()) {
-		console.log("isQueriesTypes");
 		inputEl = queryTypeField;
 		error = errors.QUERY;
 	} else if (!consentCheckbox.checked) {
-		console.log("checkbox");
 		inputEl = consentCheckbox;
 		error = errors.CONSENT;
 	}
@@ -98,14 +94,38 @@ function submitHandler(e) {
 }
 
 function queryTypesHandler(e) {
+	e.preventDefault();
+	const checkedType = e.currentTarget.querySelector("input");
+
+	checkedType.checked = true;
 	queryTypes.forEach((type) => {
 		if (type.id === e.currentTarget.id) type.classList.add("active");
 		else type.classList.remove("active");
 	});
 }
 
+function consentCheckboxHandler(e) {
+	e.preventDefault();
+	if (e.key === ENTER) {
+		consentCheckbox.checked = true;
+	}
+}
+
 submitBtn.addEventListener("click", submitHandler);
+submitBtn.addEventListener("keydown", (e) => {
+	if (e.key === ENTER) submitHandler(e);
+	return;
+});
 
 queryTypes.forEach((type) => {
 	type.addEventListener("click", queryTypesHandler);
+	type.addEventListener("keydown", (e) => {
+		if (e.key === ENTER) queryTypesHandler(e);
+		return;
+	});
+});
+
+consentCheckbox.addEventListener("keydown", (e) => {
+	if (e.key === ENTER) consentCheckboxHandler(e);
+	return;
 });

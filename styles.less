@@ -155,6 +155,10 @@ body {
 		border-radius: @sp-200;
 		background-color: @white;
 		padding: clamp(@sp-300, 5.2vw, @sp-500);
+		max-width: 46rem;
+		@media (max-width: 46rem) {
+			max-height: 48.313rem;
+		}
 
 		fieldset {
 			border: none;
@@ -164,6 +168,11 @@ body {
 			}
 		}
 	}
+}
+
+input:focus,
+textarea:focus {
+	outline: 2px solid @green-600;
 }
 
 .btn {
@@ -177,10 +186,12 @@ body {
 	cursor: pointer;
 	transition: all 0.3s;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		-webkit-box-shadow: inset 5rem 5rem 5rem 5rem rgba(0, 0, 0, 0.4);
 		-moz-box-shadow: inset 5rem 5rem 5rem 5rem rgba(0, 0, 0, 0.4);
 		box-shadow: inset 5rem 5rem 5rem 5rem rgba(0, 0, 0, 0.4);
+		outline: none;
 	}
 }
 
@@ -190,6 +201,7 @@ body {
 	display: grid;
 	place-content: center;
 	gap: @sp-300;
+	color: @grey-900;
 
 	&__title {
 		.heading-bold();
@@ -208,7 +220,6 @@ body {
 				grid-column-end: 3;
 			}
 		}
-
 		label {
 			.body-sm();
 			input {
@@ -219,14 +230,14 @@ body {
 				&::placeholder {
 					.body-md-regular();
 				}
-
-				&.error {
+				&.error,
+				&.error:focus {
 					border-color: @red;
+					outline: @red;
 				}
 			}
 		}
 	}
-
 	&__queries {
 		display: grid;
 		gap: @sp-200;
@@ -246,7 +257,6 @@ body {
 				width: 1.5rem;
 				height: 1.5rem;
 			}
-
 			&.active,
 			&:active,
 			&:checked {
@@ -259,11 +269,9 @@ body {
 			}
 		}
 	}
-
 	&__message {
 		textarea {
 			width: 100%;
-
 			&.error {
 				border: 1px solid @red;
 			}
@@ -275,6 +283,9 @@ body {
 		label {
 			.flex(center, flex-start, row);
 			gap: @sp-200;
+		}
+		input {
+			accent-color: @green-600;
 		}
 	}
 
@@ -294,16 +305,12 @@ body {
 	padding: @sp-300;
 	margin: 0 @sp-150;
 	max-width: 28.125rem;
-	// -webkit-animation: fadeout 1s;
-	// animation: fadeout 1s;
-
 	@media (min-width: 40rem) {
 		left: 50%;
 		transform: translateX(-50%);
 		margin: 0;
 		width: 100%;
 	}
-
 	h1 {
 		.flex(center, flex-start, row);
 		gap: @sp-200;
