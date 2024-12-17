@@ -19,6 +19,7 @@
 		/>
 		<link rel="stylesheet/less" type="text/css" href="styles.less" />
 		<script src="https://cdn.jsdelivr.net/npm/less"></script>
+		<script src="script.js" defer></script>
 
 		<title>Frontend Mentor | Contact form</title>
 	</head>
@@ -34,11 +35,10 @@
 							placeholder="First Name"
 							id="first_name"
 							autocomplete="name"
+							class="first_name"
 							required
 						/>
-						<span class="form__error-msg" aria-labelledby="first_name">
-							This field is required
-						</span>
+						<span class="form__error-msg" aria-labelledby="first_name"> </span>
 					</label>
 
 					<label for="last_name"
@@ -48,11 +48,10 @@
 							placeholder="Last Name"
 							id="last_name"
 							autocomplete="family-name"
+							class="last_name"
 							required
 						/>
-						<span class="form__error-msg" aria-labelledby="last_name">
-							This field is required
-						</span>
+						<span class="form__error-msg" aria-labelledby="last_name"> </span>
 					</label>
 
 					<label for="email" id="label-email"
@@ -62,40 +61,37 @@
 							placeholder="Email"
 							id="email"
 							autocomplete="email"
+							class="email"
 						/>
-						<span class="form__error-msg" aria-labelledby="email">
-							This field is required/Please enter a valid email address
-						</span>
+						<span class="form__error-msg" aria-labelledby="email"> </span>
 					</label>
 				</fieldset>
-				<fieldset class="form__queries">
+				<fieldset class="form__queries" id="queries">
 					<legend>Query Type <span aria-label="required">*</span></legend>
-					<div role="group" class="queries__type">
-						<input type="radio" name="query-type" id="general" checked />
+					<div role="group" class="queries__type" id="general_div">
+						<input type="radio" name="query-type" id="general" />
 						<label for="general">General Enquiry</label>
 					</div>
-					<div role="group" class="queries__type">
+					<div role="group" class="queries__type" id="support">
 						<input type="radio" name="query-type" id="support" />
 						<label for="support">Support Request</label>
 					</div>
-					<p class="form__error-msg">Please select a query type</p>
+					<p class="form__error-msg" aria-labelledby="queries"></p>
 				</fieldset>
 				<fieldset class="form__message">
 					<label for="msg"
 						>Message <span aria-label="required">*</span>
 						<textarea id="msg" name="message" rows="10"></textarea>
-						<span class="form__error-msg">This field is required</span>
+						<span class="form__error-msg" aria-labelledby="msg"></span>
 					</label>
 				</fieldset>
 
 				<fieldset class="form__checkbox">
-					<input type="checkbox" id="concent" required />
-					<label for="concent"
-						>I consent to being contacted by the team <span>*</span></label
+					<label for="consent">
+						<input type="checkbox" id="consent" required />
+						I consent to being contacted by the team <span>*</span></label
 					>
-					<p class="form__error-msg">
-						To submit this form, please consent to being contacted
-					</p>
+					<p class="form__error-msg" aria-labelledby="consent"></p>
 				</fieldset>
 				<button class="btn" type="submit">Submit</button>
 			</form>
